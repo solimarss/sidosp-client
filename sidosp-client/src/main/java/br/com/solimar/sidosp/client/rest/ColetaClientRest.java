@@ -2,6 +2,7 @@ package br.com.solimar.sidosp.client.rest;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -33,6 +34,7 @@ public class ColetaClientRest implements Serializable {
 			System.out.println("Exception : " + e.getMessage());
 			e.printStackTrace();
 		}
+		
 		return response.getStatus();
 
 	}
@@ -44,6 +46,11 @@ public class ColetaClientRest implements Serializable {
 		System.out.println("******** Insert **********************");
 		Coleta c = new Coleta();
 		c.setNumero(27384l);
+		c.setData(new Date());
+		c.setHorario(new Date());
+		c.setDoadorNum(12l);
+		c.setLaboratorioNum(234l);
+		
 		
 		Exame exame = new Exame();
 		exame.setCodigo(12732l);
