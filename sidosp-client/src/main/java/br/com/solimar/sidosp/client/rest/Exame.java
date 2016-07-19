@@ -2,7 +2,6 @@ package br.com.solimar.sidosp.client.rest;
 
 import java.io.Serializable;
 
-
 public class Exame implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,6 +16,8 @@ public class Exame implements Serializable {
 		this.codigo = codigo;
 	}
 
+	
+
 	public String getNome() {
 		return nome;
 	}
@@ -25,7 +26,4 @@ public class Exame implements Serializable {
 		this.nome = nome;
 	}
 
-	
-
-	
 }

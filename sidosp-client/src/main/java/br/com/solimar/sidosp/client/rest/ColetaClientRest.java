@@ -15,7 +15,8 @@ public class ColetaClientRest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String SERVER_URI = "http://localhost:8080/sidosp-m2/service";
+	private static final String SERVER_URI = "http://67.205.95.237:10995/sidosp-m2/service";
+	/*private static final String SERVER_URI = "http://localhost:8080/sidosp-m2/service";*/
 
 	private static final String ENTRY_POINT = "/coleta";
 
@@ -38,6 +39,29 @@ public class ColetaClientRest implements Serializable {
 		return response.getStatus();
 
 	}
+	
+	
+	public Coleta find(long id) {
+
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target(SERVER_URI + ENTRY_POINT + "/" + id);
+
+		Response response = null;
+		try {
+
+			response = target.request(MediaType.APPLICATION_JSON).get(
+					Response.class);
+
+		} catch (Exception e) {
+			System.out.println("Exception : " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		System.out.println("Status: " + response.getStatus());
+
+		return response.readEntity(Coleta.class);
+
+	}
 
 	public static void main(String[] args) {
 
@@ -45,7 +69,7 @@ public class ColetaClientRest implements Serializable {
 
 		System.out.println("******** Insert **********************");
 		Coleta c = new Coleta();
-		c.setNumero(27384l);
+		c.setNumero(123L);
 		c.setData(new Date());
 		c.setHorario(new Date());
 		c.setDoadorNum(12l);
@@ -53,7 +77,7 @@ public class ColetaClientRest implements Serializable {
 		
 		
 		Exame exame = new Exame();
-		exame.setCodigo(12732l);
+		exame.setCodigo(123l);
 		exame.setNome("Hemograma");
 		
 		c.setExames(new ArrayList<Exame>());
@@ -61,6 +85,9 @@ public class ColetaClientRest implements Serializable {
 
 		int status = cliente.insert(c);
 		System.out.println("Resposta status: " + status);
+		
+		Coleta resp = cliente.find(123);
+		System.out.println("Resposta doador nº: " + resp.getDoadorNum());
 
 	}
 

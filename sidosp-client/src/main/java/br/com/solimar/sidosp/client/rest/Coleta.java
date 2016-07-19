@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlSchemaType;
+//imports omitidos
 
 
 public class Coleta implements Serializable{
@@ -13,6 +15,9 @@ public class Coleta implements Serializable{
 	private Long numero;
 	private Long doadorNum;
 	private Long laboratorioNum;
+	
+	
+	
 	private Date data;
 	private Date horario;
 	private List<Exame> exames;
@@ -65,8 +70,5 @@ public class Coleta implements Serializable{
 	public void setExames(List<Exame> exames) {
 		this.exames = exames;
 	}
-
-	
-
 	
 }
